@@ -1,3 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+    <link href="src/styles.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</head>
+
+  <body>
+      <div class="container">
+				<div class="weather-app">
+		
+			<h1>☀️ Current Temperature°C </h1>
+			
+			<h2> City </h2>
+
+			<h3> Current Day and Time </h3>
+				
+	
+				<button type="button" class="btn btn-warning">Current Location</button>
+		
+				<form id="search-form">
+			<input type="search" placeholder="Type a City..." autocomplete="off" autofocus="on" id="search-text-input"/>
+
+			<input type="submit" value="search"/>
+		</form>
+			
+<div class="row">
+		<div class="col-6">
+				High of 86° 🌤
+			</div>
+			<div class="col-6">
+				Low of 71° ☁️
+			</div>
+	<div class="col-6">
+			Precipitation☔️ = 15%
+	</div>
+	<div class="col-6">
+			Wind💨 = 10mph 
+	</div>
+</div> 
+
+<div class="activities">
+<p> Try getting outside for some activities today! </br>
+	🥾 🚴🏼‍♀️ 🧗🏿 🛼 🧘🏽 🏌🏽‍♂️🚣🏻‍♂️ 🏃🏾‍♂️⚽️
+</p>
+</div>
+
+<h4>
+	5 Day Forecast ⬆⬇ </h4>
+	<div class="row">
+			<div class="col-3">
+					Saturday
+				</div>
+		<div class="col-2">
+			99°
+		</div>
+			<div class="col-2">
+				73°
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-3">
+					Sunday
+				</div>
+		<div class="col-2">
+			99°
+		</div>
+			<div class="col-2">
+				71°
+			</div>
+			</div>
+
+			<div class="row">
+					<div class="col-3">
+							Monday
+						</div>
+				<div class="col-2">
+					94°
+				</div>
+					<div class="col-2">
+						70°
+					</div>
+					</div>
+			
+					<div class="row">
+							<div class="col-3">
+									Tuesday
+								</div>
+						<div class="col-2">
+							98°
+						</div>
+							<div class="col-2">
+								72°
+							</div>
+							</div>
+
+							<div class="row">
+									<div class="col-3">
+											Wednesday
+										</div>
+								<div class="col-2">
+									102°
+								</div>
+									<div class="col-2">
+										77°
+									</div>
+									</div>
+									
+    <script src="src/script.js"></script>
+  </body>
+</html>
+
+
+
 body {
   font-family: "Roboto Condensed", sans-serif;
   text-align: center;
@@ -51,4 +179,51 @@ h4 {
   border: 3px solid #ffbe00;
   border-radius: 25px;
   padding: 5px;
+}
+
+
+function search(event) {
+  event.preventDefault();
+  let searchInput = document.querySelector("#search-text-input");
+
+  let h2 = document.querySelector("h2");
+  h2.innerHTML = `${searchInput.value}`;
+
+  searchCity(searchInput.value);
+  alert("Searching...");
+}
+function searchCity(city) {
+  let apiKey = "f07db5459df480d39610cfe693ffa35b";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+  axios.get(`${apiUrl}&appid=${apiKey}`).then(showTemperature);
+}
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", search);
+
+let now = new Date();
+console.log(now.getDay);
+
+let h3 = document.querySelector("h3");
+
+let days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday"
+];
+let day = days[now.getDay()];
+let hours = now.getHours();
+let minutes = now.getMinutes();
+
+h3.innerHTML = `${day}, ${hours}:${minutes}`;
+
+function showTemperature(response) {
+  let temperature = Math.round(response.data.main.temp);
+  let h1 = document.querySelector("h1");
+  h1.innerHTML = `${temperature}°C`;
 }
