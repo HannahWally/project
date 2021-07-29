@@ -16,6 +16,62 @@
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
+body {
+  font-family: "Roboto Condensed", sans-serif;
+  text-align: center;
+  color: #005874;
+}
+h1 {
+  font-size: 30px;
+  font-weight: stronger;
+  text-align: center;
+  color: #005874;
+}
+h2 {
+  text-align: center;
+  color: #1c819e;
+}
+h3 {
+  text-align: center;
+  color: #1c819e;
+  font-size: 20px;
+  font-weight: stronger;
+}
+p {
+  text-align: center;
+  color: #005874;
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: stronger;
+  font-size: 20px;
+}
+h4 {
+  text-align: center;
+  color: #1c819e;
+}
+
+.btn-warning {
+  position: absolute;
+  top: 30px;
+  left: 600px;
+  padding: 5px;
+  border-radius: 15px;
+}
+
+.weather-app {
+  border: 2px solid;
+  border-radius: 15px;
+  padding: 20px;
+  max-width: 630px;
+  background-color: #e6e6d4;
+}
+
+.activities {
+  border: 3px solid #ffbe00;
+  border-radius: 25px;
+  padding: 5px;
+}
+
+
 </head>
 
   <body>
@@ -120,67 +176,7 @@
 									</div>
 									</div>
 									
-    <script src="src/script.js"></script>
-  </body>
-</html>
-
-
-
-body {
-  font-family: "Roboto Condensed", sans-serif;
-  text-align: center;
-  color: #005874;
-}
-h1 {
-  font-size: 30px;
-  font-weight: stronger;
-  text-align: center;
-  color: #005874;
-}
-h2 {
-  text-align: center;
-  color: #1c819e;
-}
-h3 {
-  text-align: center;
-  color: #1c819e;
-  font-size: 20px;
-  font-weight: stronger;
-}
-p {
-  text-align: center;
-  color: #005874;
-  font-family: "Roboto Condensed", sans-serif;
-  font-weight: stronger;
-  font-size: 20px;
-}
-h4 {
-  text-align: center;
-  color: #1c819e;
-}
-
-.btn-warning {
-  position: absolute;
-  top: 30px;
-  left: 600px;
-  padding: 5px;
-  border-radius: 15px;
-}
-
-.weather-app {
-  border: 2px solid;
-  border-radius: 15px;
-  padding: 20px;
-  max-width: 630px;
-  background-color: #e6e6d4;
-}
-
-.activities {
-  border: 3px solid #ffbe00;
-  border-radius: 25px;
-  padding: 5px;
-}
-
+<script>
 
 function search(event) {
   event.preventDefault();
@@ -227,3 +223,6 @@ function showTemperature(response) {
   let h1 = document.querySelector("h1");
   h1.innerHTML = `${temperature}°C`;
 }
+</script>
+</body>
+</html>
